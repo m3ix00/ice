@@ -1,5 +1,6 @@
 const request = require('request');
 const { app } = require('electron');
+const log = require('./logger');
 
 
 /**
@@ -39,6 +40,10 @@ const report = (data = {}, topic = 'info') => {
   request({
     url,
     timeout: 2000,
+  }, (err) => {
+    if (err) {
+      log.error(err);
+    }
   });
 };
 
